@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 import { Recipe } from 'src/app/share/recipe.model';
 
@@ -8,13 +9,13 @@ import { Recipe } from 'src/app/share/recipe.model';
   styleUrls: ['./recipes-list.component.scss']
 })
 export class RecipesListComponent implements OnInit {
-  recipes: Recipe[] = [
-    new Recipe('Yellow birthday cupcakes', 'Sour cream, cake flour', 'https://cdn.sallysbakingaddiction.com/wp-content/uploads/2019/05/yellow-birthday-cupcakes-chocolate-frosting-600x900.jpg')
-  ];
-  
-  constructor() { }
+  recipes: Recipe[];
+  recipeWasSelected: Recipe;
+
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
+    this.recipes = this.recipeService.getRecipes();
   }
 
 }
